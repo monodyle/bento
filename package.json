@@ -10,12 +10,13 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "fast-average-color": "9.3.0",
     "solid-js": "1.6.11"
   },
   "devDependencies": {
     "@types/node": "18.14.0",
-    "@typescript-eslint/eslint-plugin": "5.52.0",
-    "@typescript-eslint/parser": "5.52.0",
+    "@typescript-eslint/eslint-plugin": "5.53.0",
+    "@typescript-eslint/parser": "5.53.0",
     "autoprefixer": "10.4.13",
     "classnames": "2.3.2",
     "eslint": "8.34.0",

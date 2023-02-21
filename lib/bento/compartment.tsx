@@ -1,7 +1,8 @@
 import cx from 'classnames'
-import { JSX } from 'solid-js'
+import { createSignal, JSX, onMount } from 'solid-js'
 import { Icons } from '../icons/icons'
 import { ComponentWithChildren } from '../types/types'
+import { FastAverageColor } from 'fast-average-color'
 
 type Props = {
   col?: number
@@ -19,8 +20,11 @@ const Anchor: CompProps = ({ href, ...props }) => (
 )
 const Box: CompProps = props => <div {...props} />
 
+const fac = new FastAverageColor()
+
 export const Compartment: CompProps = ({ col = 1, row = 1, ...props }) => {
   const { image, color, label, class: classnames, children, href } = props
+  const [isDarkImage, setDarkImage] = createSignal(false)
 
   if (children === undefined && image === undefined) {
     throw new Error('`Compartment` component required at least one of props: `children` or `image`')
@@ -35,6 +39,12 @@ export const Compartment: CompProps = ({ col = 1, row = 1, ...props }) => {
   const imagePlaceAsBackground = Boolean(image && !children)
   if (imagePlaceAsBackground) css['background-image'] = `url(${image})`
 
+  onMount(async () => {
+    if (!image) return
+    const avgColor = await fac.getColorAsync(image)
+    setDarkImage(avgColor.isDark)
+  })
+
   const Wrapper = href ? Anchor : Box
   return (
     <Wrapper
@@ -44,7 +54,12 @@ export const Compartment: CompProps = ({ col = 1, row = 1, ...props }) => {
     >
       {children && <div class={cx('flex flex-col', classnames)}>{children}</div>}
       {Boolean(imagePlaceAsBackground && label) && (
-        <div class="px-2.5 py-1.5 text-sm font-medium bg-zinc-50 rounded-lg absolute bottom-4 left-4 shadow-lg bg-opacity-40 filter backdrop-blur saturate-150 flex items-center gap-1">
+        <div
+          class={cx(
+            'px-2.5 py-1.5 text-sm font-medium rounded-lg absolute bottom-4 left-4 shadow-lg bg-opacity-40 filter backdrop-blur saturate-150 flex items-center gap-1',
+            isDarkImage() ? 'bg-zinc-900 text-white' : 'bg-zinc-50 text-zinc-900'
+          )}
+        >
           {label}
           {href && <Icons.ArrowUpRight class="w-4" />}
         </div>
