@@ -3,5 +3,5 @@ import { Twitter } from './twitter'
 
 export const Icons = {
   Instagram,
-  Twitter
+  Twitter,
 }

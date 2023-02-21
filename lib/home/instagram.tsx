@@ -9,27 +9,27 @@ import { Icons } from '../icons/icons'
 const images = [
   {
     href: 'https://www.instagram.com/p/Co1SKnOvK0E/',
-    src: car
+    src: car,
   },
   {
     href: 'https://www.instagram.com/p/Cor1oE0PO2e/',
-    src: cat
+    src: cat,
   },
   {
     href: 'https://www.instagram.com/p/CokjsGVvhXu/',
-    src: starbuck
-  }
+    src: starbuck,
+  },
 ]
 
 export const Instagram = () => {
   return (
-    <Bento title='I shot things...'>
-      <Compartment href='https://www.instagram.com/monodyle/'>
+    <Bento title="I shot things...">
+      <Compartment href="https://www.instagram.com/monodyle/">
         <Icon>
-          <Icons.Instagram class='w-full h-full' />
+          <Icons.Instagram class="w-full h-full" />
         </Icon>
-        <div class='mt-2 font-semibold'>@monodyle</div>
-        <span class='mt-auto bg-[#0095f6] text-white font-semibold flex-0 self-start px-3 py-1 rounded-md'>
+        <div class="mt-2 font-semibold">@monodyle</div>
+        <span class="mt-auto bg-[#0095f6] text-white font-semibold flex-0 self-start px-3 py-1 rounded-md">
           Follow
         </span>
       </Compartment>
