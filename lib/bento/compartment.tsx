@@ -56,7 +56,7 @@ export const Compartment: CompProps = ({ col = 1, row = 1, ...props }) => {
       {Boolean(imagePlaceAsBackground && label) && (
         <div
           class={cx(
-            'px-2.5 py-1.5 text-sm font-medium rounded-lg absolute bottom-4 left-4 shadow-lg bg-opacity-40 filter backdrop-blur saturate-150 flex items-center gap-1',
+            'px-2.5 py-1.5 text-sm font-semibold rounded-lg absolute bottom-4 left-4 shadow-lg bg-opacity-40 filter backdrop-blur saturate-150 flex items-center gap-1',
             isDarkImage() ? 'bg-zinc-900 text-white' : 'bg-zinc-50 text-zinc-900'
           )}
         >
