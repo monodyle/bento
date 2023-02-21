@@ -1,5 +1,6 @@
 import cx from 'classnames'
 import { JSX } from 'solid-js'
+import { Icons } from '../icons/icons'
 import { ComponentWithChildren } from '../types/types'
 
 type Props = {
@@ -45,8 +46,9 @@ export const Compartment: CompProps = ({ col = 1, row = 1, ...props }) => {
     >
       {children && <div class="flex flex-col">{children}</div>}
       {Boolean(image && label) && (
-        <div class="px-2.5 py-1.5 text-sm font-medium bg-zinc-50 rounded-lg absolute bottom-4 left-4 shadow-lg bg-opacity-40 filter backdrop-blur saturate-150">
+        <div class="px-2.5 py-1.5 text-sm font-medium bg-zinc-50 rounded-lg absolute bottom-4 left-4 shadow-lg bg-opacity-40 filter backdrop-blur saturate-150 flex items-center gap-1">
           {label}
+          {href && <Icons.ArrowUpRight class="w-4" />}
         </div>
       )}
     </Wrapper>
