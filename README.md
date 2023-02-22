@@ -4,13 +4,15 @@
 	</a>
 	<br />
 	<sup>
-    Take a look 🍱 <a href="https://bento.minhle.space/">bento.minhle.space</a>
+    Take a look at 🍱 <a href="https://bento.minhle.space/">bento.minhle.space</a>
   </sup>
 </p>
 
 ## About
 
-**Bento** is a cloned of [bento.me] personal bio, rewrite in SolidJS.
+**Bento** is a cloned of [bento.me] personal bio.
+
+I have rewritten it using SolidJS to enable more personalized development and greater flexibility in creating new features without being limited by the provider. That allowed me to develop a more robust and customizable solution.
 
 [bento.me]: https://bento.me
 
