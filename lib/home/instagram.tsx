@@ -1,23 +1,33 @@
-import car from '#/assets/instagram/car.jpg'
-import cat from '#/assets/instagram/cat.jpg'
-import starbuck from '#/assets/instagram/starbuck.jpg'
+import car_jpg from '#/assets/instagram/car.jpg'
+import car_webp from '#/assets/instagram/car.webp'
+import cat_jpg from '#/assets/instagram/cat.jpg'
+import cat_webp from '#/assets/instagram/cat.webp'
+import starbuck_jpg from '#/assets/instagram/starbuck.jpg'
+import starbuck_webp from '#/assets/instagram/starbuck.webp'
+
 import { Bento } from '../bento/bento'
 import { Compartment } from '../bento/compartment'
 import { Icon } from '../bento/icon'
 import { Icons } from '../icons/icons'
+import { ImageSet } from '../picture/picture'
 
-const images = [
+type InstagramImage = {
+  href: string
+  src: ImageSet
+}
+
+const images: Array<InstagramImage> = [
   {
     href: 'https://www.instagram.com/p/Co1SKnOvK0E/',
-    src: car,
+    src: { jpg: car_jpg, webp: car_webp },
   },
   {
     href: 'https://www.instagram.com/p/Cor1oE0PO2e/',
-    src: cat,
+    src: { jpg: cat_jpg, webp: cat_webp },
   },
   {
     href: 'https://www.instagram.com/p/CokjsGVvhXu/',
-    src: starbuck,
+    src: { jpg: starbuck_jpg, webp: starbuck_webp },
   },
 ]
 

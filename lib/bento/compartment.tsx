@@ -3,11 +3,12 @@ import { createSignal, JSX, onMount } from 'solid-js'
 import { Icons } from '../icons/icons'
 import { ComponentWithChildren } from '../types/types'
 import { FastAverageColor } from 'fast-average-color'
+import { ImageSet, Picture } from '../picture/picture'
 
 type Props = {
   col?: number
   row?: number
-  image?: string
+  image?: string | ImageSet
   color?: string
   label?: string
   href?: string
@@ -38,9 +39,20 @@ export const Compartment: CompProps = ({ col = 1, row = 1, ...props }) => {
 
   const imagePlaceAsBackground = Boolean(image && !children)
 
+  const imageSources: ImageSet | undefined =
+    image !== undefined
+      ? typeof image === 'string'
+        ? { src: image }
+        : {
+            png: image?.png,
+            jpg: image?.jpg,
+            webp: image?.webp,
+          }
+      : undefined
+
   onMount(async () => {
-    if (!image) return
-    const avgColor = await fac.getColorAsync(image)
+    if (!imageSources?.src) return
+    const avgColor = await fac.getColorAsync(imageSources.src)
     setDarkImage(avgColor.isDark)
   })
 
@@ -53,20 +65,20 @@ export const Compartment: CompProps = ({ col = 1, row = 1, ...props }) => {
     >
       {imagePlaceAsBackground && (
         <div class="absolute inset-0 pointer-events-none select-none">
-          <img
-            src={image}
-            title={label}
-            alt={label}
-            loading="lazy"
-            class="object-cover object-center"
-          />
+          <Picture {...imageSources} class="object-cover object-center" title={label} alt={label} />
         </div>
       )}
       <div class="relative w-full h-full flex">
         {children && <div class={cx('flex flex-col', classnames)}>{children}</div>}
-        {Boolean(!imagePlaceAsBackground && image) && (
-          <img src={image} title={label} alt={label} class="block w-full rounded-md mt-auto" />
-        )}
+        {/* {Boolean(!imagePlaceAsBackground && image) && (
+          <img
+            loading="lazy"
+            src={image}
+            title={label}
+            alt={label}
+            class="block w-full rounded-md mt-auto select-none"
+          />
+        )} */}
       </div>
       {Boolean(imagePlaceAsBackground && label) && (
         <div
