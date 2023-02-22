@@ -1,8 +1,10 @@
 import { Bento } from '../bento/bento'
 import { Compartment } from '../bento/compartment'
 
-import mavis_hub from '#/assets/works/mavis-hub.png'
-import saigonese_coffee from '#/assets/works/saigonese-coffee.png'
+import mavis_hub_webp from '#/assets/works/mavis-hub.webp'
+import mavis_hub_png from '#/assets/works/mavis-hub.png'
+import saigonese_coffee_webp from '#/assets/works/saigonese-coffee.webp'
+import saigonese_coffee_png from '#/assets/works/saigonese-coffee.png'
 import { Icon } from '../bento/icon'
 import { Icons } from '../icons/icons'
 
@@ -13,10 +15,14 @@ export const Works = () => {
         col={2}
         row={2}
         href="https://saigonese.cafe/"
-        image={saigonese_coffee}
+        image={{ webp: saigonese_coffee_webp, png: saigonese_coffee_png }}
         label="saigonese.cafe"
       />
-      <Compartment col={2} image={mavis_hub} label="Mavis Hub @ Axie Infinity" />
+      <Compartment
+        col={2}
+        image={{ webp: mavis_hub_webp, png: mavis_hub_png }}
+        label="Mavis Hub @ Axie Infinity"
+      />
       <Compartment href="https://github.com/monodyle/">
         <Icon>
           <Icons.Github class="w-full h-full" />
