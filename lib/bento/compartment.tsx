@@ -37,7 +37,6 @@ export const Compartment: CompProps = ({ col = 1, row = 1, ...props }) => {
   }
 
   const imagePlaceAsBackground = Boolean(image && !children)
-  if (imagePlaceAsBackground) css['background-image'] = `url(${image})`
 
   onMount(async () => {
     if (!image) return
@@ -50,22 +49,37 @@ export const Compartment: CompProps = ({ col = 1, row = 1, ...props }) => {
     <Wrapper
       style={css}
       href={href}
-      class="relative flex rounded-2xl border border-solid border-zinc-100 p-6 shadow-xl shadow-zinc-100 bg-cover bg-clip-border"
+      class="relative rounded-2xl border border-solid border-zinc-100 p-6 shadow-xl shadow-zinc-100 bg-cover bg-clip-border overflow-hidden"
     >
-      {children && <div class={cx('flex flex-col', classnames)}>{children}</div>}
+      {imagePlaceAsBackground && (
+        <div class="absolute inset-0 pointer-events-none select-none">
+          <img
+            src={image}
+            title={label}
+            alt={label}
+            loading="lazy"
+            class="object-cover object-center"
+          />
+        </div>
+      )}
+      <div class="relative w-full h-full flex">
+        {children && <div class={cx('flex flex-col', classnames)}>{children}</div>}
+        {Boolean(!imagePlaceAsBackground && image) && (
+          <img src={image} title={label} alt={label} class="block w-full rounded-md mt-auto" />
+        )}
+      </div>
       {Boolean(imagePlaceAsBackground && label) && (
         <div
           class={cx(
-            'px-2.5 py-1.5 text-sm font-semibold rounded-lg absolute bottom-4 left-4 shadow-lg bg-opacity-40 filter backdrop-blur saturate-150 flex items-center gap-1',
+            'flex items-center gap-1 select-none',
+            'absolute bottom-4 left-4 px-2.5 py-1.5 rounded-lg',
+            'text-sm font-semibold shadow-lg bg-opacity-40 filter backdrop-blur saturate-150',
             isDarkImage() ? 'bg-zinc-900 text-white' : 'bg-zinc-50 text-zinc-900'
           )}
         >
           {label}
           {href && <Icons.ArrowUpRight class="w-4" />}
         </div>
-      )}
-      {Boolean(!imagePlaceAsBackground && image) && (
-        <img src={image} title={label} alt={label} class="block w-full rounded-md mt-auto" />
       )}
     </Wrapper>
   )
